@@ -1,7 +1,5 @@
 package datastructures;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.Objects;
 
 /**
@@ -204,12 +202,6 @@ public class BinarySearchTree {
         return focusNode;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || Objects.equals(this.toString(), o.toString());
-    }
-
-
     public TreeNode getReplacementNode(TreeNode replacedNode) {
 
         TreeNode replacementParent = replacedNode;
@@ -346,6 +338,12 @@ public class BinarySearchTree {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof BinarySearchTree &&
+                (this == o || Objects.equals(this.toString(), o.toString()));
     }
 
     @Override

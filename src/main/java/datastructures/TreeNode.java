@@ -55,7 +55,8 @@ public class TreeNode {
 
     @Override
     public boolean equals(Object o) {
-        return this == o || Objects.equals(this.toString(), o.toString());
+        return o instanceof TreeNode &&
+                (this == o || Objects.equals(this.toString(), o.toString()));
     }
 
     @Override
