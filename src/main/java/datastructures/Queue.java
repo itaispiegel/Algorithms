@@ -1,9 +1,6 @@
 package datastructures;
 
-import com.google.common.collect.Lists;
-
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -19,12 +16,7 @@ import java.util.NoSuchElementException;
  * For additional documentation, see <a href="http://introcs.cs.princeton.edu/43stack">Section 4.3</a> of
  * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  */
-public class Queue<T> implements Iterable<T>, Collection<T> {
-
-    /**
-     * Size of the queue.
-     */
-    private int size;
+public class Queue<T> extends Collection<T> {
 
     /**
      * First value of the queue.
@@ -42,24 +34,10 @@ public class Queue<T> implements Iterable<T>, Collection<T> {
      * New empty queue.
      */
     public Queue() {
+        super();
+
         first = null;
         last = null;
-    }
-
-    /**
-     * Is the queue empty?
-     */
-    @Override
-    public boolean isEmpty() {
-        return first == null;
-    }
-
-    /**
-     * Get the size of the queue.
-     */
-    @Override
-    public int size() {
-        return size;
     }
 
     /**
@@ -136,14 +114,10 @@ public class Queue<T> implements Iterable<T>, Collection<T> {
         return sb.toString();
     }
 
-    @Override
-    public List<T> toList() {
-        return Lists.newArrayList(iterator());
-    }
-
     /**
      * Return an iterator that iterates over the items on the queue in FIFO order.
      */
+    @Override
     public Iterator<T> iterator() {
         return new QueueIterator();
     }

@@ -9,6 +9,7 @@ public class Node<T> {
     private Node<T> next;
 
     public Node() {
+        next = null;
     }
 
     public Node(T item, Node<T> next) {

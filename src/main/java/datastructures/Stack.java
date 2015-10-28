@@ -1,9 +1,6 @@
 package datastructures;
 
-import com.google.common.collect.Lists;
-
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -17,12 +14,7 @@ import java.util.NoSuchElementException;
  * For additional documentation, see <a href="http://introcs.cs.princeton.edu/43stack">Section 4.3</a> of
  * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  */
-public class Stack<T> implements Iterable<T>, Collection<T> {
-
-    /**
-     * Size of the stack.
-     */
-    private int size;
+public class Stack<T> extends Collection<T> {
 
     /**
      * Top item of the stack.
@@ -33,21 +25,9 @@ public class Stack<T> implements Iterable<T>, Collection<T> {
      * Create an empty stack.
      */
     public Stack() {
+        super();
+
         this.top = new Node<>();
-        this.size = 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return top == null;
-    }
-
-    /**
-     * Get the size of the stack.
-     */
-    @Override
-    public int size() {
-        return size;
     }
 
     /**
@@ -107,11 +87,6 @@ public class Stack<T> implements Iterable<T>, Collection<T> {
         sb.deleteCharAt(sb.length() - 1);
 
         return sb.toString();
-    }
-
-    @Override
-    public List<T> toList() {
-        return Lists.newArrayList(iterator());
     }
 
     /**
