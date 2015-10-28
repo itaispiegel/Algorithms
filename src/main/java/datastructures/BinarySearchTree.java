@@ -31,7 +31,8 @@ public class BinarySearchTree {
     }
 
     /**
-     * Add a new node to the tree.
+     * <b>Complexity: O(logn)</b>
+     * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
     public void addNode(TreeNode node) {
@@ -75,7 +76,8 @@ public class BinarySearchTree {
     }
 
     /**
-     * Add a new node to the tree.
+     * <b>Complexity: O(logn)</b>
+     * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the node.
      */
     public void addNode(int value) {

@@ -62,10 +62,72 @@ public class Sorting {
             }
             arr[j + 1] = tmp;
         }
-        
+
         return arr;
     }
 
+
+    /**
+     * Shell sort - simple sorting algorithm.
+     * <p>
+     * <ul>
+     * <li>Depends on input data order. Very efficient for small data and partially
+     * sorted data.
+     * <li>The fastest simple sorting algorithm
+     * <li>Quadratic complexity
+     * <li>Not stable
+     * <li>In-place
+     * <li>Online
+     * </ul>
+     * <p>
+     * <table>
+     * <tr>
+     * <th>Input</th>
+     * <th>Complexity</th>
+     * </tr>
+     * <tr>
+     * <td>Random</td>
+     * <td>O(N^1.5)</td>
+     * </tr>
+     * <tr>
+     * <td>Sorted</td>
+     * <td>O(N)</td>
+     * </tr>
+     * <tr>
+     * <td>Reverse sorted</td>
+     * <td>O(N^2)</td>
+     * </tr>
+     * </table>
+     *
+     * @see <a href="http://en.wikipedia.org/wiki/Shell_sort">wikipedia</a>
+     *
+     */
+    public int[] shellSort(int[] arr) {
+        int interval = 1;
+
+        // Calculate initialized interval
+        while (interval < arr.length / 3) {
+            interval = 3 * interval + 1; // 1, 4, 13, 40
+        }
+
+        while (interval >= 1) {
+
+            for (int i = interval; i < arr.length; i++) {
+                for (int j = i; j >= interval && arr[j] < arr[j - interval]; j -= interval) {
+                    swap(arr, j, j - interval);
+                }
+            }
+
+            interval /= 3;
+        }
+
+        return arr;
+    }
+
+    /**
+     * <b>Complexity: O(1)</b>
+     * <br/>Swap two values in an array.
+     */
     public void swap(int[] arr, int i1, int i2) {
         int tmp = arr[i1];
         arr[i1] = arr[i2];
@@ -108,7 +170,6 @@ public class Sorting {
     /**
      * Complexity: O(n)
      * Prints an array.
-     * @param arr
      */
     public void printArray(int[] arr) {
         for(int x : arr) {

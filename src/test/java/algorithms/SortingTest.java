@@ -18,7 +18,9 @@ public class SortingTest extends Sorting {
     @Before
     public void setUp() throws Exception {
         arr = new int[] {11, 14, 18, 13, 21, 4};
-        expected = arr;
+        expected = new int[arr.length];
+
+        System.arraycopy(arr, 0, expected, 0, arr.length);
 
         Arrays.sort(expected);
     }
@@ -68,5 +70,11 @@ public class SortingTest extends Sorting {
         int expectedIndex = 2;
 
         assertEquals(index, expectedIndex);
+    }
+
+    @Test
+    public void testShellSort() throws Exception {
+        arr = shellSort(arr);
+        assertArrayEquals(arr, expected);
     }
 }
