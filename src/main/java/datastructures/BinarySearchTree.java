@@ -1,5 +1,7 @@
 package datastructures;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.Objects;
 
 /**
@@ -207,6 +209,42 @@ public class BinarySearchTree {
         return this == o || Objects.equals(this.toString(), o.toString());
     }
 
+
+    public TreeNode getReplacementNode(TreeNode replacedNode) {
+
+        TreeNode replacementParent = replacedNode;
+        TreeNode replacement = replacedNode;
+
+        TreeNode focusNode = replacedNode.getRightChild();
+
+        // While there are no more left children
+
+        while (focusNode != null) {
+
+            replacementParent = replacement;
+
+            replacement = focusNode;
+
+            focusNode = focusNode.getLeftChild();
+
+        }
+
+        // If the replacement isn't the right child
+        // move the replacement into the parents
+        // leftChild slot and move the replaced nodes
+        // right child into the replacements rightChild
+
+        if (replacement != replacedNode.getRightChild()) {
+
+            replacementParent.setLeftChild(replacedNode.getRightChild());
+            replacement.setRightChild(replacedNode.getRightChild());
+
+        }
+
+        return replacement;
+
+    }
+
     public boolean remove(int value) {
         TreeNode focusNode = root;
         TreeNode parent = root;
@@ -308,35 +346,6 @@ public class BinarySearchTree {
         }
 
         return true;
-    }
-
-    //Find a replacement node
-    private TreeNode getReplacementNode(TreeNode replacedNode) {
-
-        TreeNode replacementParent = replacedNode;
-        TreeNode replacement = replacedNode;
-
-        TreeNode focusNode = replacedNode.getRightChild();
-
-        //While there are no more left children
-        while (focusNode != null) {
-            replacementParent = replacement;
-
-            replacedNode = focusNode;
-
-            focusNode = focusNode.getLeftChild();
-        }
-
-        // If the replacement isn't the right child
-        // move the replacement into the parents
-        // leftChild slot and move the replaced nodes
-        // right child into the replacements rightChild
-        if (replacement != replacedNode.getRightChild()) {
-            replacementParent.setLeftChild(replacement.getRightChild());
-            replacement.setRightChild(replacedNode.getRightChild());
-        }
-
-        return replacement;
     }
 
     @Override

@@ -55,7 +55,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testRemoveNode() throws Exception {
-        tree.remove(50);
+        tree.remove(25);
         System.out.println(tree);
     }
 }
