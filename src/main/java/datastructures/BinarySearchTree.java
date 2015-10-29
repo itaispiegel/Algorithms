@@ -20,7 +20,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Initialize a search tree.
+     * Initialize a search tree with the values.
      */
     public BinarySearchTree(int... values) {
         addNodes(values);
@@ -35,22 +35,20 @@ public class BinarySearchTree {
      * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
-    public TreeNode addNode(TreeNode currentParent, TreeNode node) {
-        if(currentParent == null) {
+    public TreeNode addNode(TreeNode currNode, TreeNode node) {
+        if(currNode == null) {
             return node;
-        } else if(node.getValue() < currentParent.getValue()) {
-            currentParent.setLeftChild(addNode(currentParent.getLeftChild(), node));
+        } else if(node.getValue() < currNode.getValue()) {
+            currNode.setLeftChild(addNode(currNode.getLeftChild(), node));
         } else {
-            currentParent.setRightChild(addNode(currentParent.getRightChild(), node));
+            currNode.setRightChild(addNode(currNode.getRightChild(), node));
         }
 
-        return currentParent;
+        return currNode;
      }
 
     /**
-     * <b>Complexity: O(logn)</b>
-     * <br/>Add a new node to the tree.
-     * The tree will find the valid spot for the node.
+     * {@link #addNode(TreeNode, TreeNode)}
      */
     public void addNode(int value) {
         TreeNode newNode = new TreeNode(value);
@@ -68,8 +66,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Add an array of nodes to the tree.
-     * The tree will find the valid spot for each node.
+     * {@link #addNodes(int...)}
      */
     public void addNodes(TreeNode... nodes) {
         for (TreeNode node : nodes) {
@@ -150,30 +147,21 @@ public class BinarySearchTree {
     /**
      * Find a node in the tree.
      */
-    public TreeNode findNode(int value) {
-
-        //Start at the top of the tree.
-        TreeNode focusNode = root;
-
-        //Keep looking for the node while it is not found.
-        while (focusNode.getValue() != value) {
-
-            //If the requested node is less than the focus node, shift to the left of the tree.
-            if (value < focusNode.getValue()) {
-                focusNode = focusNode.getLeftChild();
-
-                //If the requested node is larger than the focus node, shift to the right of the tree.
-            } else {
-                focusNode = focusNode.getRightChild();
-            }
-
-            //If the node wasn't found, return null.
-            if (focusNode == null) {
-                return null;
-            }
+    public TreeNode findNode(TreeNode currNode, int value) {
+        if(currNode.getValue() == value) {
+            return currNode;
+        } else if(value < currNode.getValue()) {
+            return findNode(currNode.getLeftChild(), value);
+        } else {
+            return findNode(currNode.getRightChild(), value);
         }
+    }
 
-        return focusNode;
+    /**
+     * {@link #findNode(TreeNode, int)}
+     */
+    public TreeNode findNode(int value) {
+        return findNode(this.root, value);
     }
 
     public TreeNode getReplacementNode(TreeNode replacedNode) {
@@ -314,6 +302,9 @@ public class BinarySearchTree {
         return true;
     }
 
+    /**
+     * Are two BinarySearchTrees equal?
+     */
     @Override
     public boolean equals(Object o) {
         return o instanceof BinarySearchTree &&

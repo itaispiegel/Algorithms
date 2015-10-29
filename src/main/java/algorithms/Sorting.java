@@ -142,7 +142,7 @@ public class Sorting {
     }
 
     /**
-     * <b>Complexity: O(logn)</b>
+     * <b>Complexity: O(log n)</b>
      * <br/>The binary search algorithm begins by comparing the target value to the value of the middle element of the sorted array.
      * If the target value is equal to the middle element's value, then the position is returned and the search is finished.
      * If the target value is less than the middle element's value, then the search continues on the lower half of the array;
