@@ -27,19 +27,19 @@ public class SortingTest extends Sorting {
 
     @Test
     public void testSelectionSort() throws Exception {
-        arr = selectionSort(arr);
+        selectionSort(arr);
         assertArrayEquals(arr, expected);
     }
 
     @Test
     public void testBubbleSort() throws Exception {
-        arr = bubbleSort(arr);
+        bubbleSort(arr);
         assertArrayEquals(arr, expected);
     }
 
     @Test
     public void testInsertionSort() throws Exception {
-        arr = insertionSort(arr);
+        insertionSort(arr);
         assertArrayEquals(arr, expected);
     }
 
@@ -63,7 +63,7 @@ public class SortingTest extends Sorting {
 
     @Test
     public void testBinarySearch() throws Exception {
-        arr = bubbleSort(arr);
+        bubbleSort(arr);
         
         int val = 13;
         int index = binarySearch(arr, val);
@@ -74,7 +74,13 @@ public class SortingTest extends Sorting {
 
     @Test
     public void testShellSort() throws Exception {
-        arr = shellSort(arr);
+        shellSort(arr);
+        assertArrayEquals(arr, expected);
+    }
+
+    @Test
+    public void testQuickSort() throws Exception {
+        quickSort(arr);
         assertArrayEquals(arr, expected);
     }
 }

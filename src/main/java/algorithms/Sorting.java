@@ -10,9 +10,8 @@ public class Sorting {
      * <br/>Search through the array, find largest value, exchange with first array value.
      * <br/>Search through rest of array, find second-largest value, exchange with second array value, and so forth.
      */
-    public int[] selectionSort(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++)
-        {
+    public void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int index = i;
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[index]) {
@@ -22,7 +21,6 @@ public class Sorting {
 
             swap(arr, index, i);
         }
-        return arr;
     }
 
     /**
@@ -31,18 +29,17 @@ public class Sorting {
      * swap them if they are not in the right order.
      * After each iteration, one less element (the last one) is needed to be compared until there are no more elements left to be compared.
      */
-    public int[] bubbleSort(int[] arr) {
+    public void bubbleSort(int[] arr) {
 
         // i is left value, and j is right value
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
 
-                if(arr[j] < arr[i]) {
+                if (arr[j] < arr[i]) {
                     swap(arr, i, j);
                 }
             }
         }
-        return arr;
     }
 
     /**
@@ -50,20 +47,18 @@ public class Sorting {
      * <br>Each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list,
      * and inserts it there. It repeats until no input elements remain.
      */
-    public int[] insertionSort(int[] arr) {
+    public void insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int tmp = arr[i];
 
             int j;
 
             // Slide array values and insert the relevant one.
-            for (j = i - 1; j >= 0 && tmp < arr[j] ; j--) {
+            for (j = i - 1; j >= 0 && tmp < arr[j]; j--) {
                 arr[j + 1] = arr[j];
             }
             arr[j + 1] = tmp;
         }
-
-        return arr;
     }
 
 
@@ -100,9 +95,8 @@ public class Sorting {
      * </table>
      *
      * @see <a href="http://en.wikipedia.org/wiki/Shell_sort">wikipedia</a>
-     *
      */
-    public int[] shellSort(int[] arr) {
+    public void shellSort(int[] arr) {
         int interval = 1;
 
         // Calculate initialized interval
@@ -120,8 +114,82 @@ public class Sorting {
 
             interval /= 3;
         }
+    }
 
-        return arr;
+    public void quickSort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    /**
+     * <b>Best Complexity: O(n log(n))
+     * <br/>Average Complexity: O(n log(n))
+     * <br/>Worst Complexity: O(n log(n))
+     * <br/>Worst Space Complexity: O(n)</b>
+     * <p>
+     * <p>
+     * Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays:
+     * the low elements and the high elements.
+     * Quicksort can then recursively sort the sub-arrays.</p>
+     * <p>
+     * <p>The steps are:</p>
+     * <ul>
+     * <li>Pick an element, called a pivot, from the array.</li>
+     * <li>{@link #partition(int[], int, int)}.</li>
+     * <li>Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array
+     * of elements with greater values.</li>
+     * </ul>
+     */
+    public void quickSort(int[] arr, int left, int right) {
+
+        //Border of partition
+        int index = partition(arr, left, right);
+
+        //Sort left half
+        if (left < index - 1) {
+            quickSort(arr, left, index - 1);
+        }
+
+        //Sort right half
+        if (index < right) {
+            quickSort(arr, index, right);
+        }
+    }
+
+    /**
+     * <b>Complexity: O(n)</b>
+     * <p>Reorder the array so that all elements with values less than the pivot come before the pivot,
+     * while all elements with values greater than the pivot come after it (equal values can go either way).
+     * After this partitioning, the pivot is in its final position.
+     * This is called the partition operation.</p>
+     */
+    public int partition(int[] arr, int left, int right) {
+
+        //Pivot value must be from the array.
+        int pivot = arr[(left + right) / 2];
+
+        //Until we've iterated through the whole array.
+        while (left <= right) {
+
+            //Find a value on the left side that should be on the right side.
+            while (arr[left] < pivot) {
+                left++;
+            }
+
+            //FInd a value on the right side that should be on the left side.
+            while (arr[right] > pivot) {
+                right--;
+            }
+
+            //Swap elements, and move left and right indices.
+            if (left <= right) {
+                swap(arr, left, right);
+                left++;
+                right--;
+            }
+
+        }
+
+        return left;
     }
 
     /**
@@ -154,13 +222,13 @@ public class Sorting {
     public int binarySearch(int[] arr, int val, int left, int right) {
         int index = (left + right) / 2;
 
-        if(right < left) {
+        if (right < left) {
             return -1;
         }
 
-        if(arr[index] == val) {
+        if (arr[index] == val) {
             return index;
-        } else if(arr[index] < val) {
+        } else if (arr[index] < val) {
             return binarySearch(arr, val, index + 1, right);
         } else {
             return binarySearch(arr, val, left, index - 1);
@@ -172,7 +240,7 @@ public class Sorting {
      * Prints an array.
      */
     public void printArray(int[] arr) {
-        for(int x : arr) {
+        for (int x : arr) {
             System.out.print(x + " ");
         }
 
