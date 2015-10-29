@@ -35,45 +35,17 @@ public class BinarySearchTree {
      * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
-    public void addNode(TreeNode node) {
-
-        // If there is no root, then set the new node as the root.
-        if (root == null) {
-            this.root = node;
-
-            //Search for the valid place for the new node
+    public TreeNode addNode(TreeNode currentParent, TreeNode node) {
+        if(currentParent == null) {
+            return node;
+        } else if(node.getValue() < currentParent.getValue()) {
+            currentParent.setLeftChild(addNode(currentParent.getLeftChild(), node));
         } else {
-
-            //Focus node is the current iterating node
-            TreeNode focusNode = root;
-            TreeNode parent;
-
-            while (true) {
-                parent = focusNode;
-
-                //If the requested node's value is less than the current node value, then set it as the left child.
-                if (node.getValue() < focusNode.getValue()) {
-                    focusNode = focusNode.getLeftChild();
-
-                    //If there is no left child, then set the new node as the left child.
-                    if (focusNode == null) {
-                        parent.setLeftChild(node);
-                        return;
-                    }
-
-                    //If the requested node's value is larger than the current node value, then set it as the right child.
-                } else {
-                    focusNode = focusNode.getRightChild();
-
-                    //If there is no right child, then set the new node as the right child.
-                    if (focusNode == null) {
-                        parent.setRightChild(node);
-                        return;
-                    }
-                }
-            }
+            currentParent.setRightChild(addNode(currentParent.getRightChild(), node));
         }
-    }
+
+        return currentParent;
+     }
 
     /**
      * <b>Complexity: O(logn)</b>
@@ -82,7 +54,7 @@ public class BinarySearchTree {
      */
     public void addNode(int value) {
         TreeNode newNode = new TreeNode(value);
-        addNode(newNode);
+        this.root = addNode(this.root, newNode);
     }
 
     /**
@@ -101,7 +73,7 @@ public class BinarySearchTree {
      */
     public void addNodes(TreeNode... nodes) {
         for (TreeNode node : nodes) {
-            addNode(node);
+            addNode(this.root, node);
         }
     }
 
