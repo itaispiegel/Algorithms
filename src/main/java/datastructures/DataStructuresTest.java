@@ -9,28 +9,28 @@ public class DataStructuresTest {
 
     public static void main(String[] args) {
 
-        //-----Stack------
-        Stack<Integer> stack = new Stack<>();
+        //-----LinkedStack------
+        LinkedStack<Integer> linkedStack = new LinkedStack<>();
 
-        // Add random numbers to the stack
-        IntStream.range(0, 15).forEach(stack::push);
+        // Add random numbers to the linkedStack
+        IntStream.range(0, 15).forEach(linkedStack::push);
 
-        // Print the stack
-        System.out.println(stack);
+        // Print the linkedStack
+        System.out.println(linkedStack);
 
-        System.out.println("Peek: " + stack.peek() + "\n");
-        System.out.println(stack);
+        System.out.println("Peek: " + linkedStack.peek() + "\n");
+        System.out.println(linkedStack);
 
-        stack.push(14);
-        System.out.println(stack);
+        linkedStack.pop();
+        System.out.println(linkedStack);
 
         System.out.println("-------------\n");
 
-        //-----Queue------
-        Queue<Integer> queue = new Queue<>();
+        //-----LinkedQueue------
+        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
 
-        // Add random numbers to the stack
-        IntStream.range(0, 15).forEach(queue::push);
-        System.out.println(queue);
+        // Add random numbers to the linkedStack
+        IntStream.range(0, 15).forEach(linkedQueue::enqueue);
+        System.out.println(linkedQueue);
     }
 }

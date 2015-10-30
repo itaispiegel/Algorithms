@@ -10,20 +10,20 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Itai on 27-Oct-15.
  */
-public class QueueTest extends Queue {
+public class LinkedQueueTest extends LinkedQueue {
 
-    private Queue<Integer> queue;
+    private LinkedQueue<Integer> linkedQueue;
 
     @Before
     public void setUp() throws Exception {
-        queue = new Queue<>();
-        IntStream.range(0, 5).forEach(queue::push);
+        linkedQueue = new LinkedQueue<>();
+        IntStream.range(0, 5).forEach(linkedQueue::enqueue);
     }
 
     @Test
     public void testToString() throws Exception {
         String expected = "0 1 2 3 4";
-        String val = queue.toString();
+        String val = linkedQueue.toString();
 
         assertEquals(val, expected);
     }
@@ -33,24 +33,24 @@ public class QueueTest extends Queue {
         int val = 16;
         int sizeExpected = 6;
 
-        queue.push(val);
+        linkedQueue.enqueue(val);
 
         String expectedString = "0 1 2 3 4 " + val;
-        String queueString = queue.toString();
+        String queueString = linkedQueue.toString();
 
         assertEquals(queueString, expectedString);
-        assertEquals(queue.size(), sizeExpected);
+        assertEquals(linkedQueue.size(), sizeExpected);
     }
 
     @Test
     public void testPop() throws Exception {
         Integer expected = 0;
-        Integer val = queue.pop();
+        Integer val = linkedQueue.dequeue();
 
-        Queue<Integer> expectedQueue = new Queue<>();
-        IntStream.range(1, 5).forEach(expectedQueue::push);
+        LinkedQueue<Integer> expectedLinkedQueue = new LinkedQueue<>();
+        IntStream.range(1, 5).forEach(expectedLinkedQueue::enqueue);
 
         assertEquals(val, expected);
-        assertEquals(queue.toString(), expectedQueue.toString());
+        assertEquals(linkedQueue.toString(), expectedLinkedQueue.toString());
     }
 }

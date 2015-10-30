@@ -19,28 +19,6 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testAddNode() throws Exception {
-
-    }
-
-    @Test
-    public void testInOrderTraversal() throws Exception {
-        System.out.print("\nIn Order Traversal: ");
-        tree.inOrderTraversal();
-        System.out.println();
-    }
-
-    @Test
-    public void testPreOrderTraversal() throws Exception {
-        System.out.print("\nPre Order Traversal: ");
-        tree.preOrderTraversal();
-        System.out.println();
-    }
-
-    @Test
-    public void testPostOrderTraversal() throws Exception {
-        System.out.print("\nPost Order Traversal: ");
-        tree.postOrderTraversal();
-        System.out.println();
     }
 
     @Test
@@ -56,6 +34,5 @@ public class BinarySearchTreeTest {
     @Test
     public void testRemoveNode() throws Exception {
         tree.remove(25);
-        System.out.println(tree);
     }
 }

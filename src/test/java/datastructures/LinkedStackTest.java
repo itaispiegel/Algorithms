@@ -10,32 +10,32 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Itai on 27-Oct-15.
  */
-public class StackTest extends Stack {
+public class LinkedStackTest extends LinkedStack {
 
-    private Stack<Integer> stack;
+    private LinkedStack<Integer> linkedStack;
 
     @Before
     public void setUp() throws Exception {
-        stack = new Stack<>();
+        linkedStack = new LinkedStack<>();
 
-        //Load stack with {0, 1, 2, 3, 4}
-        IntStream.range(0, 5).forEach(stack::push);
+        //Load linkedStack with {0, 1, 2, 3, 4}
+        IntStream.range(0, 5).forEach(linkedStack::push);
     }
 
     @Test
     public void testPush() throws Exception {
         int val = 16;
 
-        stack.push(val);
+        linkedStack.push(val);
 
         String expected = "16 4 3 2 1 0";
-        assertEquals(stack.toString(), expected);
+        assertEquals(linkedStack.toString(), expected);
     }
 
     @Test
     public void testSize() throws Exception {
         int expected = 5;
-        assertEquals(stack.size(), expected);
+        assertEquals(linkedStack.size(), expected);
     }
 
     @Test
@@ -43,23 +43,23 @@ public class StackTest extends Stack {
         Integer popExpected = 4;
         int sizeExpected = 4;
 
-        Stack<Integer> stackExpected = new Stack<>();
-        IntStream.range(0, 4).forEach(stackExpected::push);
+        LinkedStack<Integer> linkedStackExpected = new LinkedStack<>();
+        IntStream.range(0, 4).forEach(linkedStackExpected::push);
 
-        assertEquals(stack.pop(), popExpected);
-        assertEquals(stack.size(), sizeExpected);
-        assertEquals(stack.toString(), stackExpected.toString());
+        assertEquals(linkedStack.pop(), popExpected);
+        assertEquals(linkedStack.size(), sizeExpected);
+        assertEquals(linkedStack.toString(), linkedStackExpected.toString());
     }
 
     @Test
     public void testPeek() throws Exception {
         Integer expected = 4;
-        assertEquals(stack.peek(), expected);
+        assertEquals(linkedStack.peek(), expected);
     }
 
     @Test
     public void testToString() throws Exception {
-        String val = stack.toString();
+        String val = linkedStack.toString();
         String expected = "4 3 2 1 0";
 
         assertEquals(val, expected);
