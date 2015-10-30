@@ -10,14 +10,14 @@ import static org.junit.Assert.*;
 /**
  * Created by Itai on 27-Oct-15.
  */
-public class SortingTest extends Sorting {
+public class ArrayAlgorithmsTest extends ArrayAlgorithms {
 
     private int[] arr;
     private int[] expected;
 
     @Before
     public void setUp() throws Exception {
-        arr = new int[] {11, 14, 18, 13, 21, 4};
+        arr = new int[]{11, 14, 18, 13, 21, 4};
         expected = new int[arr.length];
 
         System.arraycopy(arr, 0, expected, 0, arr.length);
@@ -64,7 +64,7 @@ public class SortingTest extends Sorting {
     @Test
     public void testBinarySearch() throws Exception {
         bubbleSort(arr);
-        
+
         int val = 13;
         int index = binarySearch(arr, val);
         int expectedIndex = 2;
@@ -82,5 +82,18 @@ public class SortingTest extends Sorting {
     public void testQuickSort() throws Exception {
         quickSort(arr);
         assertArrayEquals(arr, expected);
+    }
+
+    @Test
+    public void testQuickSelect() throws Exception {
+        int[] sorted = Arrays.copyOf(arr, arr.length);
+        quickSort(sorted);
+
+        for (int i = 0; i < sorted.length; i++) {
+            int val = sorted[i];
+            int select = quickSelect(arr, i);
+
+            assertEquals(select, val);
+        }
     }
 }

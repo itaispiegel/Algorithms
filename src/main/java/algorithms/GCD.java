@@ -18,5 +18,4 @@ public class GCD {
 
         return gcd(mod, a);
     }
-
 }

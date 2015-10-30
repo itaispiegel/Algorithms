@@ -1,9 +1,9 @@
 package algorithms;
 
 /**
- * Created by Itai on 27-Oct-15.
+ * This class contains an assortment of algorithms relating to arrays - mainly sorting algorithms.
  */
-public class Sorting {
+public class ArrayAlgorithms {
 
     /**
      * <b>Complexity: O(n^2)</b>
@@ -156,6 +156,42 @@ public class Sorting {
     }
 
     /**
+     * <b>Best Complexity: O(n)
+     * <br/>Average Complexity: O(n)
+     * <br/>Worst Complexity: O(n^2)</b>
+     * <p>
+     * <p>An algorithm used to find the kth smallest element in an unsorted array.</p>
+     * <br/>The steps are:
+     * <ul>
+     * <li>Pick an element, called a pivot, from the array.</li>
+     * <li>{@link #partition(int[], int, int)}.</li>
+     * <li>Search for the element in the partitioned side.</li>
+     * </ul>
+     * @return Kth smallest element in the array.
+     */
+    public int quickSelect(int[] arr, int left, int right, int k) {
+
+        //If the array has only one element, return it
+        if (left == right) {
+            return arr[left];
+        }
+
+        int pivotIndex = partition(arr, left, right);
+
+        if (k == pivotIndex) {
+            return arr[k];
+        } else if (k < pivotIndex) {
+            return quickSelect(arr, left, pivotIndex - 1, k);
+        } else {
+            return quickSelect(arr, pivotIndex, right, k);
+        }
+    }
+
+    public int quickSelect(int[] arr, int k) {
+        return quickSelect(arr, 0, arr.length - 1, k);
+    }
+
+    /**
      * <b>Complexity: O(n)</b>
      * <p>Reorder the array so that all elements with values less than the pivot come before the pivot,
      * while all elements with values greater than the pivot come after it (equal values can go either way).
@@ -165,6 +201,7 @@ public class Sorting {
     public int partition(int[] arr, int left, int right) {
 
         //Pivot value must be from the array.
+        //Choose a random pivot index
         int pivot = arr[(left + right) / 2];
 
         //Until we've iterated through the whole array.
@@ -175,7 +212,7 @@ public class Sorting {
                 left++;
             }
 
-            //FInd a value on the right side that should be on the left side.
+            //Find a value on the right side that should be on the left side.
             while (arr[right] > pivot) {
                 right--;
             }
@@ -186,7 +223,6 @@ public class Sorting {
                 left++;
                 right--;
             }
-
         }
 
         return left;
@@ -197,9 +233,11 @@ public class Sorting {
      * <br/>Swap two values in an array.
      */
     public void swap(int[] arr, int i1, int i2) {
-        int tmp = arr[i1];
-        arr[i1] = arr[i2];
-        arr[i2] = tmp;
+        if (i1 != i2) {
+            int tmp = arr[i1];
+            arr[i1] = arr[i2];
+            arr[i2] = tmp;
+        }
     }
 
     /**

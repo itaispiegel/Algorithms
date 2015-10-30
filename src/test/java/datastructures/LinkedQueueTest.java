@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Itai on 27-Oct-15.
  */
-public class LinkedQueueTest extends LinkedQueue {
+public class LinkedQueueTest extends LinkedQueue<Integer> {
 
     private LinkedQueue<Integer> linkedQueue;
 
@@ -29,7 +29,7 @@ public class LinkedQueueTest extends LinkedQueue {
     }
 
     @Test
-    public void testPush() throws Exception {
+    public void testEnqueue() throws Exception {
         int val = 16;
         int sizeExpected = 6;
 
@@ -43,7 +43,7 @@ public class LinkedQueueTest extends LinkedQueue {
     }
 
     @Test
-    public void testPop() throws Exception {
+    public void testDequeue() throws Exception {
         Integer expected = 0;
         Integer val = linkedQueue.dequeue();
 

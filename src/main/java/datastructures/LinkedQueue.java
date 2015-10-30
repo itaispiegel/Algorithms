@@ -115,7 +115,7 @@ public class LinkedQueue<T> extends Queue<T> {
     }
 
     /**
-     * Return an iterator that iterates over the items on the queue in FIFO order.
+     * Return an iterator that iterates over the items of the queue in FIFO order.
      */
     @Override
     public Iterator<T> iterator() {
