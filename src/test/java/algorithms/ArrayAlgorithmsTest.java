@@ -89,11 +89,18 @@ public class ArrayAlgorithmsTest extends ArrayAlgorithms {
         int[] sorted = Arrays.copyOf(arr, arr.length);
         quickSort(sorted);
 
+        //Assert every value in the array
         for (int i = 0; i < sorted.length; i++) {
             int val = sorted[i];
             int select = quickSelect(arr, i);
 
             assertEquals(select, val);
         }
+    }
+
+    @Test
+    public void testMergeSort() throws Exception {
+        arr = mergeSort(arr, 0, arr.length - 1);
+        assertArrayEquals(arr, expected);
     }
 }

@@ -1,5 +1,7 @@
 package algorithms;
 
+import java.util.Arrays;
+
 /**
  * This class contains an assortment of algorithms relating to arrays - mainly sorting algorithms.
  */
@@ -116,6 +118,9 @@ public class ArrayAlgorithms {
         }
     }
 
+    /**
+     * {@link #quickSort(int[], int, int)}
+     */
     public void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
@@ -123,8 +128,8 @@ public class ArrayAlgorithms {
     /**
      * <b>Best Complexity: O(n log(n))
      * <br/>Average Complexity: O(n log(n))
-     * <br/>Worst Complexity: O(n log(n))
-     * <br/>Worst Space Complexity: O(n)</b>
+     * <br/>Worst Complexity: O(n ^ 2)
+     * <br/>Worst Space Complexity: O(log n)</b>
      * <p>
      * <p>
      * Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays:
@@ -156,6 +161,59 @@ public class ArrayAlgorithms {
     }
 
     /**
+     * <p><b>Best Complexity: O(n log(n))
+     * <br/>Average Complexity: O(n log(n))
+     * <br/>Worst Complexity: O(n log(n))
+     * <br/>Worst Space Complexity: O(n)</b></p>
+     * <p>
+     * Divide the array into n sublists, each containing 1 element, and repeatedly merge sublists
+     * to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.</p>
+     */
+    public int[] mergeSort(int[] arr, int start, int end) {
+        if (start == end) {
+            int[] newArray = new int[1];
+            newArray[0] = arr[start];
+
+            return newArray;
+        }
+
+        int[] left = mergeSort(arr, start, (start + end) / 2);
+        int[] right = mergeSort(arr, (start + end) / 2 + 1, end);
+
+        return merge(left, right);
+    }
+
+    /**
+     * Merge two arrays in a sorted way.
+     * @return a sorted array which contains values from both sub arrays.
+     */
+    public int[] merge(int[] left, int[] right) {
+        int[] mergedArray = new int[left.length + right.length];
+
+        int i = 0;
+        int j = 0;
+
+        while (i + j < mergedArray.length) {
+
+            if (i == left.length) {
+                mergedArray[i + j] = right[j];
+                j++;
+            } else if (j == right.length) {
+                mergedArray[i + j] = left[i];
+                i++;
+            } else if (left[i] <= right[j]) {
+                mergedArray[i + j] = left[i];
+                i++;
+            } else {
+                mergedArray[i + j] = right[j];
+                j++;
+            }
+        }
+
+        return mergedArray;
+    }
+
+    /**
      * <b>Best Complexity: O(n)
      * <br/>Average Complexity: O(n)
      * <br/>Worst Complexity: O(n^2)</b>
@@ -167,6 +225,7 @@ public class ArrayAlgorithms {
      * <li>{@link #partition(int[], int, int)}.</li>
      * <li>Search for the element in the partitioned side.</li>
      * </ul>
+     *
      * @return Kth smallest element in the array.
      */
     public int quickSelect(int[] arr, int left, int right, int k) {
