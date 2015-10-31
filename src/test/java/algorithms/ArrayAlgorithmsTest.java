@@ -103,4 +103,29 @@ public class ArrayAlgorithmsTest extends ArrayAlgorithms {
         arr = mergeSort(arr, 0, arr.length - 1);
         assertArrayEquals(arr, expected);
     }
+
+    @Test
+    public void testPartition() throws Exception {
+        int[] arr2 = {1, 2, 3, 4, 5, 6};
+        int[] arr3 = {512, 13, 19, 21, 17, 4, 8, 2, 11, 273};
+
+        assertArrayPartitioned(arr);
+        assertArrayPartitioned(arr2);
+        assertArrayPartitioned(arr3);
+    }
+
+    private void assertArrayPartitioned(int[] arr) {
+        int pivotVal = arr[(arr.length - 1) / 2];
+        int pivotIndex = partition(arr, 0, arr.length - 1);
+
+        assertEquals(arr[pivotIndex], pivotVal);
+
+        for (int i = 0; i < pivotIndex; i++) {
+            assertTrue(arr[i] < pivotVal);
+        }
+
+        for (int i = pivotIndex + 1; i < arr.length; i++) {
+            assertTrue(arr[i] > pivotVal);
+        }
+    }
 }

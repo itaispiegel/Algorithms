@@ -1,7 +1,5 @@
 package algorithms;
 
-import java.util.Arrays;
-
 /**
  * This class contains an assortment of algorithms relating to arrays - mainly sorting algorithms.
  */
@@ -146,17 +144,15 @@ public class ArrayAlgorithms {
      */
     public void quickSort(int[] arr, int left, int right) {
 
-        //Border of partition
-        int index = partition(arr, left, right);
+        if(left < right) {
+            //Border of partition
+            int pivotIndex = partition(arr, left, right);
 
-        //Sort left half
-        if (left < index - 1) {
-            quickSort(arr, left, index - 1);
-        }
+            //Sort left half
+            quickSort(arr, left, pivotIndex);
 
-        //Sort right half
-        if (index < right) {
-            quickSort(arr, index, right);
+            //Sort right half
+            quickSort(arr, pivotIndex + 1, right);
         }
     }
 
@@ -240,12 +236,15 @@ public class ArrayAlgorithms {
         if (k == pivotIndex) {
             return arr[k];
         } else if (k < pivotIndex) {
-            return quickSelect(arr, left, pivotIndex - 1, k);
+            return quickSelect(arr, left, pivotIndex, k);
         } else {
-            return quickSelect(arr, pivotIndex, right, k);
+            return quickSelect(arr, pivotIndex + 1, right, k);
         }
     }
 
+    /**
+     * {@link #quickSelect(int[], int, int, int)}
+     */
     public int quickSelect(int[] arr, int k) {
         return quickSelect(arr, 0, arr.length - 1, k);
     }
@@ -258,33 +257,20 @@ public class ArrayAlgorithms {
      * This is called the partition operation.</p>
      */
     public int partition(int[] arr, int left, int right) {
+        int pivotIndex = (left + right) / 2;
+        int pivotVal = arr[pivotIndex];
+        swap(arr, pivotIndex, right);
 
-        //Pivot value must be from the array.
-        //Choose a random pivot index
-        int pivot = arr[(left + right) / 2];
-
-        //Until we've iterated through the whole array.
-        while (left <= right) {
-
-            //Find a value on the left side that should be on the right side.
-            while (arr[left] < pivot) {
-                left++;
-            }
-
-            //Find a value on the right side that should be on the left side.
-            while (arr[right] > pivot) {
-                right--;
-            }
-
-            //Swap elements, and move left and right indices.
-            if (left <= right) {
-                swap(arr, left, right);
-                left++;
-                right--;
+        int storeIndex = left;
+        for (int i = left; i < right; i++) {
+            if(arr[i] < pivotVal) {
+                swap(arr, i, storeIndex);
+                storeIndex++;
             }
         }
 
-        return left;
+        swap(arr, right, storeIndex);
+        return storeIndex;
     }
 
     /**
