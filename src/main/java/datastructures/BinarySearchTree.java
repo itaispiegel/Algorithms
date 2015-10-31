@@ -23,7 +23,7 @@ public class BinarySearchTree {
      * Initialize a search tree with the values.
      */
     public BinarySearchTree(int... values) {
-        addNodes(values);
+        insert(values);
     }
 
     public TreeNode getRoot() {
@@ -35,42 +35,42 @@ public class BinarySearchTree {
      * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
-    public TreeNode addNode(TreeNode currNode, TreeNode node) {
+    public TreeNode insert(TreeNode currNode, TreeNode node) {
         if(currNode == null) {
             return node;
         } else if(node.getValue() < currNode.getValue()) {
-            currNode.setLeftChild(addNode(currNode.getLeftChild(), node));
+            currNode.setLeftChild(insert(currNode.getLeftChild(), node));
         } else {
-            currNode.setRightChild(addNode(currNode.getRightChild(), node));
+            currNode.setRightChild(insert(currNode.getRightChild(), node));
         }
 
         return currNode;
      }
 
     /**
-     * {@link #addNode(TreeNode, TreeNode)}
+     * {@link #insert(TreeNode, TreeNode)}
      */
-    public void addNode(int value) {
+    public void insert(int value) {
         TreeNode newNode = new TreeNode(value);
-        this.root = addNode(this.root, newNode);
+        this.root = insert(this.root, newNode);
     }
 
     /**
      * Add an array of nodes to the tree.
      * The tree will find the valid spot for each node.
      */
-    public void addNodes(int... values) {
+    public void insert(int... values) {
         for (int val : values) {
-            addNode(val);
+            insert(val);
         }
     }
 
     /**
-     * {@link #addNodes(int...)}
+     * {@link #insert(int...)}
      */
-    public void addNodes(TreeNode... nodes) {
+    public void insert(TreeNode... nodes) {
         for (TreeNode node : nodes) {
-            addNode(this.root, node);
+            insert(this.root, node);
         }
     }
 

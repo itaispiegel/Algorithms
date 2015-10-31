@@ -18,7 +18,7 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void testAddNode() throws Exception {
+    public void testInsert() throws Exception {
     }
 
     @Test

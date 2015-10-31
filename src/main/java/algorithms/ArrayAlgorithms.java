@@ -144,7 +144,7 @@ public class ArrayAlgorithms {
      */
     public void quickSort(int[] arr, int left, int right) {
 
-        if(left < right) {
+        if (left < right) {
             //Border of partition
             int pivotIndex = partition(arr, left, right);
 
@@ -181,6 +181,7 @@ public class ArrayAlgorithms {
 
     /**
      * Merge two arrays in a sorted way.
+     *
      * @return a sorted array which contains values from both sub arrays.
      */
     public int[] merge(int[] left, int[] right) {
@@ -263,7 +264,7 @@ public class ArrayAlgorithms {
 
         int storeIndex = left;
         for (int i = left; i < right; i++) {
-            if(arr[i] < pivotVal) {
+            if (arr[i] < pivotVal) {
                 swap(arr, i, storeIndex);
                 storeIndex++;
             }
