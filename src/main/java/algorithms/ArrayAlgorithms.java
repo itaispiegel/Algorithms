@@ -162,7 +162,7 @@ public class ArrayAlgorithms {
      * <br/>Worst Complexity: O(n log(n))
      * <br/>Worst Space Complexity: O(n)</b></p>
      * <p>
-     * Divide the array into n sublists, each containing 1 element, and repeatedly merge sublists
+     * Divide the array into n sublists, each containing 1 element, and repeatedly mergeArrays sublists
      * to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.</p>
      */
     public int[] mergeSort(int[] arr, int start, int end) {
@@ -176,7 +176,7 @@ public class ArrayAlgorithms {
         int[] left = mergeSort(arr, start, (start + end) / 2);
         int[] right = mergeSort(arr, (start + end) / 2 + 1, end);
 
-        return merge(left, right);
+        return mergeArrays(left, right);
     }
 
     /**
@@ -184,7 +184,7 @@ public class ArrayAlgorithms {
      *
      * @return a sorted array which contains values from both sub arrays.
      */
-    public int[] merge(int[] left, int[] right) {
+    public int[] mergeArrays(int[] left, int[] right) {
         int[] mergedArray = new int[left.length + right.length];
 
         int i = 0;

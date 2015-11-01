@@ -68,7 +68,7 @@ public class RedBlackTree {
         insert(originalGrandparent, root);
     }
 
-    //NOT FINISHEDgit a
+    //NOT FINISHED
     public void leftRotate(RedBlackNode root) {
         if(root.getParentNode() == null || root.getLeftChild() == null) {
             return;
