@@ -29,6 +29,7 @@ public class RedBlackTree {
      * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
+    @SuppressWarnings("Duplicates")
     public RedBlackNode insert(RedBlackNode currNode, RedBlackNode node) {
         if(currNode == null) {
             return node;

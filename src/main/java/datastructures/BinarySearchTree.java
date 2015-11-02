@@ -35,6 +35,7 @@ public class BinarySearchTree {
      * <br/>Add a new node to the tree.
      * The tree will find the valid spot for the note.
      */
+    @SuppressWarnings("Duplicates")
     public TreeNode insert(TreeNode currNode, TreeNode node) {
         if(currNode == null) {
             return node;

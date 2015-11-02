@@ -22,7 +22,6 @@ public class Fibonacci {
         }
 
         return fibonacciRecursively(n - 1) + fibonacciRecursively(n - 2);
-
     }
 
     public static int fibonacciDynamic(int n) {

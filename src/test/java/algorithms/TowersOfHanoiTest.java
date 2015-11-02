@@ -11,6 +11,5 @@ public class TowersOfHanoiTest extends TowersOfHanoi {
 
     @Test
     public void testSolve() throws Exception {
-        solve(4, "A", "B", "C");
     }
 }
