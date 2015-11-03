@@ -3,6 +3,8 @@ package datastructures;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Objects;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -34,8 +36,8 @@ public class RedBlackTreeTest {
         RedBlackNode node = tree.getRoot().getRightChild(); //50
         RedBlackNode parent = node.getParentNode();
 
-        //assertEquals(parent, tree.getRoot());
-        //assertNull(tree.getRoot().getGrandparentNode());
+        assertEquals(parent, tree.getRoot());
+        assertNull(tree.getRoot().getGrandparentNode());
     }
 
     @Test

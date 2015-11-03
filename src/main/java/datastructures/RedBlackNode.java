@@ -114,7 +114,7 @@ public class RedBlackNode {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof RedBlackTree &&
+        return obj instanceof RedBlackNode &&
                 (this == obj || Objects.equals(this.toString(), obj.toString()));
     }
 
