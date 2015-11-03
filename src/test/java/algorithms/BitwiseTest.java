@@ -39,4 +39,11 @@ public class BitwiseTest extends Bitwise {
 
         assertTrue(!isPowerOf2(-8));
     }
+
+    @Test
+    public void testToBinary() throws Exception {
+        assertEquals(toBinary(5), "101");
+        assertEquals(toBinary(7), "111");
+        assertEquals(toBinary(9), "1001");
+    }
 }

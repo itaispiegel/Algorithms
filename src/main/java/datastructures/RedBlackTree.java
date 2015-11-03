@@ -52,12 +52,13 @@ public class RedBlackTree {
 
     public void insert(int val) {
         RedBlackNode newNode = new RedBlackNode(val);
+        newNode.setColor(RedBlackNode.Color.RED);
+
         this.root = insert(root, newNode);
     }
 
-    //Not fully checked
     /**
-     * Rotate tree right at sub-tree rooted at node.
+     * Rotate tree left at sub-tree rooted at node.
      */
     protected void rotateLeft(RedBlackNode node) {
         RedBlackNode parent = node.getParentNode();

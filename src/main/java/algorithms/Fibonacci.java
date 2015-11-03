@@ -33,7 +33,7 @@ public class Fibonacci {
     }
 
     public static int fibonacciFormula(int n) {
-        double fi = (1 + Math.sqrt(5)) / 2;
-        return (int) ((Math.pow(fi, n) - Math.pow(1 - fi, n)) / Math.sqrt(5));
+        double phi = (1 + Math.sqrt(5)) / 2;
+        return (int) ((Math.pow(phi, n) - Math.pow(1 - phi, n)) / Math.sqrt(5));
     }
 }

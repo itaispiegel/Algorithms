@@ -20,4 +20,19 @@ public class Bitwise {
         arr[b] = arr[a] ^ arr[b];
         arr[a] = arr[a] ^ arr[b];
     }
+
+    public String toBinary(int n) {
+        if(n < 0) {
+            throw new IllegalArgumentException("Method argument cannot be negative.");
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        while(n > 0) {
+            sb.append(n % 2);
+            n /= 2;
+        }
+
+        return sb.reverse().toString();
+    }
 }
