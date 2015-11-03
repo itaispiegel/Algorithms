@@ -1,5 +1,9 @@
 package datastructures;
 
+import com.sun.istack.internal.Nullable;
+
+import java.util.Objects;
+
 /**
  * Created by Itai on 31-Oct-15.
  */
@@ -10,9 +14,6 @@ public class RedBlackNode {
     private RedBlackNode parentNode;
     private RedBlackNode leftChild;
     private RedBlackNode rightChild;
-
-    private int numLeft;
-    private int numRight;
 
     private Color color;
 
@@ -25,9 +26,6 @@ public class RedBlackNode {
         this.parentNode = null;
         this.leftChild = null;
         this.rightChild = null;
-
-        this.numLeft = 0;
-        this.numRight = 0;
     }
 
     public RedBlackNode(int value) {
@@ -56,10 +54,11 @@ public class RedBlackNode {
     }
 
     public void setLeftChild(RedBlackNode leftChild) {
-        leftChild.setParentNode(this);
+        if(leftChild != null) {
+            leftChild.setParentNode(this);
+        }
 
         this.leftChild = leftChild;
-        this.numLeft++;
     }
 
     public RedBlackNode getRightChild() {
@@ -67,26 +66,11 @@ public class RedBlackNode {
     }
 
     public void setRightChild(RedBlackNode rightChild) {
-        rightChild.setParentNode(this);
+        if(rightChild != null) {
+            rightChild.setParentNode(this);
+        }
 
         this.rightChild = rightChild;
-        this.numRight++;
-    }
-
-    public int getNumLeft() {
-        return numLeft;
-    }
-
-    public void setNumLeft(int numLeft) {
-        this.numLeft = numLeft;
-    }
-
-    public int getNumRight() {
-        return numRight;
-    }
-
-    public void setNumRight(int numRight) {
-        this.numRight = numRight;
     }
 
     public Color getColor() {
@@ -126,5 +110,21 @@ public class RedBlackNode {
     public boolean isLeftChild() {
         RedBlackNode parent = getParentNode();
         return parent != null && parent.getLeftChild() == this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof RedBlackTree &&
+                (this == obj || Objects.equals(this.toString(), obj.toString()));
+    }
+
+    @Override
+    public String toString() {
+        return "RedBlackNode{" +
+                "value=" + value +
+                ", leftChild=" + leftChild +
+                ", rightChild=" + rightChild +
+                ", color=" + color +
+                '}';
     }
 }

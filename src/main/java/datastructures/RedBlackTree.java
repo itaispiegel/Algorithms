@@ -1,5 +1,7 @@
 package datastructures;
 
+import java.util.Objects;
+
 /**
  * Created by Itai on 31-Oct-15.
  */
@@ -53,35 +55,69 @@ public class RedBlackTree {
         this.root = insert(root, newNode);
     }
 
-    //NOT FINISHED
-    public void rightRotate(RedBlackNode root) {
-        if(root.getParentNode() == null || root.getRightChild() == null) {
+    //Not fully checked
+    /**
+     * Rotate tree right at sub-tree rooted at node.
+     */
+    protected void rotateRight(RedBlackNode node) {
+        RedBlackNode parent = node.getParentNode();
+        RedBlackNode grandparent = node.getGrandparentNode();
+
+        if(parent == null) {
             return;
         }
 
-        RedBlackNode originalGrandparent = root.getGrandparentNode();
-        RedBlackNode originalParent = root.getParentNode();
-        RedBlackNode originalRightChild = root.getRightChild();
+        parent.setRightChild(node.getLeftChild());
 
-        originalParent.setLeftChild(originalRightChild);
-        root.setRightChild(originalParent);
+        node.setLeftChild(parent);
+        node.setParentNode(grandparent);
 
-        insert(originalGrandparent, root);
+        if(grandparent != null) {
+            grandparent.setRightChild(node);
+        }
+
+        while(node.getParentNode() != null) {
+            node = node.getParentNode();
+        }
+
+        this.root = node;
     }
 
     //NOT FINISHED
-    public void leftRotate(RedBlackNode root) {
-        if(root.getParentNode() == null || root.getLeftChild() == null) {
+    public void leftRotate(RedBlackNode node) {
+        RedBlackNode parent = node.getParentNode();
+        RedBlackNode grandparent = node.getGrandparentNode();
+
+        if(parent == null) {
             return;
         }
 
-        RedBlackNode originalGrandparent = root.getGrandparentNode();
-        RedBlackNode originalParent = root.getParentNode();
-        RedBlackNode originalLeftChild = root.getLeftChild();
+        parent.setLeftChild(node.getRightChild());
 
-        originalParent.setRightChild(originalLeftChild);
-        root.setLeftChild(originalParent);
+        node.setRightChild(parent);
+        node.setParentNode(grandparent);
 
-        insert(originalGrandparent, root);
+        if(grandparent != null) {
+            grandparent.setLeftChild(node);
+        }
+
+        while(node.getParentNode() != null) {
+            node = node.getParentNode();
+        }
+
+        this.root = node;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof RedBlackTree &&
+                (this == obj || Objects.equals(this.toString(), obj.toString()));
+    }
+
+    @Override
+    public String toString() {
+        return "RedBlackTree{" +
+                "root=" + root +
+                '}';
     }
 }
