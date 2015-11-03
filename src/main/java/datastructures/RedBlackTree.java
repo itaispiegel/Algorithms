@@ -59,7 +59,7 @@ public class RedBlackTree {
     /**
      * Rotate tree right at sub-tree rooted at node.
      */
-    protected void rotateRight(RedBlackNode node) {
+    protected void rotateLeft(RedBlackNode node) {
         RedBlackNode parent = node.getParentNode();
         RedBlackNode grandparent = node.getGrandparentNode();
 
@@ -84,7 +84,7 @@ public class RedBlackTree {
     }
 
     //NOT FINISHED
-    public void leftRotate(RedBlackNode node) {
+    public void rotateRight(RedBlackNode node) {
         RedBlackNode parent = node.getParentNode();
         RedBlackNode grandparent = node.getGrandparentNode();
 

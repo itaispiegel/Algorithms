@@ -1,7 +1,5 @@
 package datastructures;
 
-import com.sun.istack.internal.Nullable;
-
 import java.util.Objects;
 
 /**
@@ -114,7 +112,7 @@ public class RedBlackNode {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof RedBlackNode &&
+        return obj instanceof RedBlackNode   &&
                 (this == obj || Objects.equals(this.toString(), obj.toString()));
     }
 
