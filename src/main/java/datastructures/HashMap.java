@@ -30,8 +30,24 @@ public class HashMap<K, V> {
             list.add(new Entry<>(key, value));
         }
 
-        // make hashmap grow when it reaches a certain size...
+        // make the hashmap grow when needed
+        if( (double) size / (double) maxSize >= 0.75 ) {
+            grow(maxSize);
+        }
+    }
 
+    private void grow(int size) {
+        this.maxSize += size;
+        LinkedList[] oldMap = array;
+
+        array = new LinkedList[size];
+
+        for(LinkedList list : oldMap) {
+            for(Object obj : list) {
+                Entry<K, V> entry = (Entry<K, V>) obj;
+                put(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     public V get(K key) {
